@@ -3,9 +3,9 @@ from page_objects.base_page import BasePage
 
 
 class LoginPage(BasePage):
-    USER_NAME = (By.XPATH, '//input[@id="user-name"]')
-    PASSWORD = (By.XPATH, '//input[@id="password"]')
-    LOGIN_BTN = (By.XPATH, '//input[@id="login-button"]')
+    USER_NAME = (By.ID, "user-name")
+    PASSWORD = (By.ID, "password")
+    LOGIN_BTN = (By.ID, "login-button")
     ERROR_MESSAGE = (By.CSS_SELECTOR, '[data-test="error"]')
 
     def enter_user_name(self, username):

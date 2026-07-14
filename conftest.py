@@ -1,5 +1,6 @@
 import pytest
 
+from faker import Faker
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
@@ -79,3 +80,14 @@ def driver(request):
     driver.maximize_window()
     yield driver
     driver.quit()
+
+
+@pytest.fixture
+def checkout_user_information_data():
+    fake = Faker()
+
+    return {
+        "first_name": fake.first_name(),
+        "last_name": fake.last_name(),
+        "postal_code": fake.postalcode(),
+    }
