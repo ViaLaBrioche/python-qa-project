@@ -6,6 +6,7 @@ class CartPage(BasePage):
     PAGE_URL = "cart.html"
     BTN_REMOVE_FROM_CART = (By.XPATH, "//button[contains(., 'Remove')]")
     BTN_CHECKOUT = (By.ID, "checkout")
+    CONTINUE_SHOPPING_BTN = (By.ID, "continue-shopping")
 
     def wait_until_loaded(self):
         self.wait_visible(self.BTN_REMOVE_FROM_CART)
@@ -19,3 +20,6 @@ class CartPage(BasePage):
 
     def click_checkout(self):
         self.click(self.BTN_CHECKOUT)
+
+    def continue_shopping(self):
+        self.click(self.CONTINUE_SHOPPING_BTN)
