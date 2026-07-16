@@ -15,4 +15,5 @@ class CheckoutComplete(BasePage):
         self.wait_visible(self.COMPLETE_TEXT)
 
     def click_back_to_products(self):
+        self.driver.logger.info("Нажимаем на кнопку возврата на страницу товаров")
         self.click(self.BTN_BACK_TO_PRODUCTS)

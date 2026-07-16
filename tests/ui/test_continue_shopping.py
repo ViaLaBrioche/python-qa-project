@@ -9,7 +9,9 @@ from page_objects.login_page import LoginPage
 
 @pytest.mark.ui
 @allure.title("Возврат к покупкам со страницы корзины")
-@allure.description("Пользователь успешно возвращается на страницу продуктов со страницы корзины")
+@allure.description(
+    "Пользователь успешно возвращается на страницу продуктов со страницы корзины"
+)
 def test_continue_shopping(driver, ui_url):
     login_page = LoginPage(driver)
     inventory_page = InventoryPage(driver)

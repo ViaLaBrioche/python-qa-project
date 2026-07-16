@@ -49,7 +49,3 @@ def test_open_product_card(driver, ui_url):
     with allure.step("Проверяем, что товар добавлен в корзину"):
         inventory_page.wait_product_added()
         assert header.get_cart_badge_text() == "1"
-
-
-
-

@@ -16,13 +16,17 @@ class CheckoutOneStep(BasePage):
         self.wait_visible(self.SECONDARY_HEADER)
 
     def enter_first_name(self, first_name):
+        self.driver.logger.info("Указываем имя")
         self.send_keys(self.FIRST_NAME, first_name)
 
     def enter_last_name(self, last_name):
+        self.driver.logger.info("Указываем фамилию")
         self.send_keys(self.LAST_NAME, last_name)
 
     def enter_postal_code(self, postal_code):
+        self.driver.logger.info("Указываем пост код")
         self.send_keys(self.POSTAL_CODE, postal_code)
 
     def click_continue(self):
+        self.driver.logger.info("Нажимаем кнопку Continue")
         self.click(self.BTN_CONTINUE)

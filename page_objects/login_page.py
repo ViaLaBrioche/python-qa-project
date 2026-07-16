@@ -9,12 +9,15 @@ class LoginPage(BasePage):
     ERROR_MESSAGE = (By.CSS_SELECTOR, '[data-test="error"]')
 
     def enter_user_name(self, username):
+        self.driver.logger.info("Вводим user name")
         self.send_keys(self.USER_NAME, username)
 
     def enter_password(self, password):
+        self.driver.logger.info("Вводим пароль")
         self.send_keys(self.PASSWORD, password)
 
     def click_login(self):
+        self.driver.logger.info("Нажимаем кнопку Login")
         self.click(self.LOGIN_BTN)
 
     def login(self, username, password):

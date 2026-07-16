@@ -13,13 +13,16 @@ class CartPage(BasePage):
         self.wait_visible(self.BTN_CHECKOUT)
 
     def delete_product(self):
+        self.driver.logger.info("Удаляем продукт")
         self.click(self.BTN_REMOVE_FROM_CART)
 
     def wait_product_removed(self):
         self.wait_not_visible(self.BTN_REMOVE_FROM_CART)
 
     def click_checkout(self):
+        self.driver.logger.info("Нажимаем кнопку Checkout")
         self.click(self.BTN_CHECKOUT)
 
     def continue_shopping(self):
+        self.driver.logger.info("Нажимаем кнопку Continue shopping")
         self.click(self.CONTINUE_SHOPPING_BTN)

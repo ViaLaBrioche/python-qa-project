@@ -16,15 +16,19 @@ class ProductPage(BasePage):
         self.wait_visible(self.PRODUCT_PRICE)
 
     def get_product_name(self):
+        self.driver.logger.info("Получаем имя товара")
         return self.get_text(self.PRODUCT_NAME)
 
     def get_product_description(self):
+        self.driver.logger.info("Получаем описание товара")
         return self.get_text(self.PRODUCT_DESCRIPTION)
 
     def get_product_price(self):
+        self.driver.logger.info("Получаем цену товара")
         return self.get_text(self.PRODUCT_PRICE)
 
     def click_add_to_cart(self):
+        self.driver.logger.info("Нажимаем на кнопку Add to cart")
         self.click(self.BTN_ADD_TO_CART)
 
     def wait_until_visible_remove(self):

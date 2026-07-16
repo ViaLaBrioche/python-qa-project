@@ -1,4 +1,8 @@
+import os
+import logging
 import pytest
+import datetime
+import allure
 
 from faker import Faker
 from selenium import webdriver
@@ -56,6 +60,25 @@ def driver(request):
     headless = request.config.getoption("--headless")
     remote_url = request.config.getoption("--remote_url")
 
+    os.makedirs("logs", exist_ok=True)
+
+    logger = logging.getLogger(request.node.name)
+    logger.handlers.clear()
+    logger.setLevel(logging.INFO)
+
+    file_handler = logging.FileHandler(
+        f"logs/{request.node.name}.log",
+        mode="w",
+        encoding="utf-8",
+    )
+
+    file_handler.setFormatter(
+        logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")
+    )
+
+    logger.addHandler(file_handler)
+    logger.info("Test started")
+
     if browser == "chrome":
         options = ChromeOptions()
 
@@ -77,9 +100,17 @@ def driver(request):
     else:
         driver = webdriver.Remote(command_executor=remote_url, options=options)
 
+    driver.logger = logger
+    request.node.driver = driver
+
     driver.maximize_window()
+
     yield driver
+
+    logger.info("===> Test finished at %s", datetime.datetime.now())
     driver.quit()
+    file_handler.close()
+    logger.removeHandler(file_handler)
 
 
 @pytest.fixture
@@ -91,3 +122,19 @@ def checkout_user_information_data():
         "last_name": fake.last_name(),
         "postal_code": fake.postalcode(),
     }
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item):
+    outcome = yield
+    rep = outcome.get_result()
+
+    if rep.when == "call" and rep.failed:
+        driver = item.funcargs.get("driver")
+
+        if driver:
+            allure.attach(
+                driver.get_screenshot_as_png(),
+                name="Screenshot on failure",
+                attachment_type=allure.attachment_type.PNG,
+            )
