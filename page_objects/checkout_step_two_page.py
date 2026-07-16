@@ -15,4 +15,5 @@ class CheckoutTwoStep(BasePage):
         self.wait_visible(self.CART_LIST)
 
     def click_finish(self):
+        self.driver.logger.info("Нажимаем кнопку Finish")
         self.click(self.BTN_FINISH)

@@ -9,6 +9,7 @@ class BasePage:
         self.driver = driver
 
     def open(self, base_url):
+        self.driver.logger.info(f"Открываем страницу: {base_url + self.PAGE_URL}")
         self.driver.get(base_url + self.PAGE_URL)
 
     def wait_visible(self, locator, timeout=10):
@@ -30,10 +31,13 @@ class BasePage:
         )
 
     def click(self, locator):
+        self.driver.logger.info(f"Нажимаем на элемент: {locator}")
         self.wait_clickable(locator).click()
 
     def get_text(self, locator):
+        self.driver.logger.info(f"Получаем текст из элемента: {locator}")
         return self.wait_visible(locator).text.strip()
 
     def send_keys(self, locator, text):
+        self.driver.logger.info(f"Вставляем текст в элемент: {locator}")
         self.wait_visible(locator).send_keys(text)
