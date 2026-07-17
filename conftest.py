@@ -153,3 +153,15 @@ def book_data():
         "excerpt": fake.text(max_nb_chars=150),
         "publishDate": fake.date_time().isoformat(),
     }
+
+
+@pytest.fixture
+def user_data():
+    fake = Faker()
+    user_id = fake.random_int(min=11, max=100)
+
+    return {
+        "id": user_id,
+        "userName": f"User {user_id}",
+        "password": fake.password(length=8),
+    }
