@@ -138,3 +138,30 @@ def pytest_runtest_makereport(item):
                 name="Screenshot on failure",
                 attachment_type=allure.attachment_type.PNG,
             )
+
+
+@pytest.fixture
+def book_data():
+    fake = Faker()
+    book_id = fake.random_int(min=201, max=10000)
+
+    return {
+        "id": book_id,
+        "title": f"Book {book_id}",
+        "description": fake.text(max_nb_chars=100),
+        "pageCount": fake.random_int(min=1, max=1000),
+        "excerpt": fake.text(max_nb_chars=150),
+        "publishDate": fake.date_time().isoformat(),
+    }
+
+
+@pytest.fixture
+def user_data():
+    fake = Faker()
+    user_id = fake.random_int(min=11, max=100)
+
+    return {
+        "id": user_id,
+        "userName": f"User {user_id}",
+        "password": fake.password(length=8),
+    }
