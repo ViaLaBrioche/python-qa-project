@@ -126,4 +126,5 @@ def test_get_book_invalid_id(api_url):
 def test_get_book_negative_id(api_url):
     res = requests.get(f"{api_url}/api/v1/Books/-1", timeout=10)
 
-    assert res.status_code == 404
+    with allure.step("Проверяем статус ответа"):
+        assert res.status_code == 404

@@ -165,3 +165,16 @@ def user_data():
         "userName": f"User {user_id}",
         "password": fake.password(length=8),
     }
+
+
+@pytest.fixture
+def author_data():
+    fake = Faker()
+    author_id = fake.random_int(min=595, max=1000)
+
+    return {
+        "id": author_id,
+        "idBook": fake.random_int(min=201, max=400),
+        "firstName": f"First Name {author_id}",
+        "lastName": f"Last Name {author_id}",
+    }
