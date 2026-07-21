@@ -50,8 +50,6 @@ services:
     build: .
     container_name: python-qa-tests
     working_dir: /app
-    volumes:
-      - .:/app
     networks:
       - selenoid
     depends_on:

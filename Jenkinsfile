@@ -57,7 +57,7 @@ pipeline {
                 results: [[path: 'allure-results']]
             ])
 
-            sh 'docker compose down'
+            sh 'docker compose stop selenoid selenoid-ui || true'
         }
     }
 }
