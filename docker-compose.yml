@@ -31,7 +31,10 @@ services:
       - selenoid
 
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: ./jenkins
+      dockerfile: Dockerfile
+    image: python-qa-jenkins
     container_name: jenkins
     user: root
     ports:
