@@ -36,16 +36,9 @@ pipeline {
         stage('Run UI tests') {
             steps {
                 sh '''
-                    pwd
-                    ls -la
-                    ls -la selenoid || true
-
                     docker compose up -d selenoid
 
                     sleep 10
-
-                    docker compose ps
-                    docker compose logs selenoid
 
                     docker compose run --rm tests \
                     pytest tests/ui -v \
