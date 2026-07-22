@@ -28,7 +28,7 @@ pipeline {
                 sh '''
                     docker compose run --rm tests \
                     pytest tests/api -v \
-                    --alluredir=/var/jenkins_home/workspace/python-qa-project/allure-results/api
+                    --alluredir=/var/jenkins_home/workspace/python-qa-project/allure-results
                 '''
             }
         }
@@ -52,7 +52,7 @@ pipeline {
                     --executor=remote \
                     --browser=chrome \
                     --remote_url=http://selenoid:4444/wd/hub \
-                    --alluredir=/var/jenkins_home/workspace/python-qa-project/allure-results/ui
+                    --alluredir=/var/jenkins_home/workspace/python-qa-project/allure-results
                 '''
             }
         }
