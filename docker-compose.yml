@@ -1,6 +1,9 @@
 services:
   selenoid:
-    image: aerokube/selenoid:1.11.3
+    build:
+      context: ./selenoid
+      dockerfile: Dockerfile
+    image: python-qa-selenoid
     container_name: selenoid
     environment:
       DOCKER_API_VERSION: "1.45"
@@ -8,7 +11,6 @@ services:
       - "4444:4444"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./selenoid:/etc/selenoid:ro
     command:
       - "-conf"
       - "/etc/selenoid/browsers.json"

@@ -19,7 +19,7 @@ pipeline {
 
         stage('Build tests image') {
             steps {
-                sh 'docker compose build tests'
+                sh 'docker compose build tests selenoid'
             }
         }
 
