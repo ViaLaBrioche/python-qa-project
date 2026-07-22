@@ -11,8 +11,8 @@ pipeline {
         stage('Clean') {
             steps {
                 sh '''
-                    rm -rf allure-results
-                    mkdir -p allure-results
+                    rm -rf /var/jenkins_home/workspace/python-qa-project/allure-results
+                    mkdir -p /var/jenkins_home/workspace/python-qa-project/allure-results
                 '''
             }
         }
@@ -28,7 +28,7 @@ pipeline {
                 sh '''
                     docker compose run --rm tests \
                     pytest tests/api -v \
-                    --alluredir=allure-results/api
+                    --alluredir=/var/jenkins_home/workspace/python-qa-project/allure-results/api
                 '''
             }
         }
@@ -52,7 +52,7 @@ pipeline {
                     --executor=remote \
                     --browser=chrome \
                     --remote_url=http://selenoid:4444/wd/hub \
-                    --alluredir=allure-results/ui
+                    --alluredir=/var/jenkins_home/workspace/python-qa-project/allure-results/ui
                 '''
             }
         }

@@ -52,6 +52,8 @@ services:
     build: .
     container_name: python-qa-tests
     working_dir: /app
+    volumes:
+      - jenkins_home:/var/jenkins_home
     networks:
       - selenoid
     depends_on:
